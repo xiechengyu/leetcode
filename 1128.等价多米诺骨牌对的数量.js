@@ -11,14 +11,16 @@
  * @return {number}
  */
 var numEquivDominoPairs = function (dominoes) {
-  let res = 0
-  for (let i = 0; i < dominoes.length - 1; i++) {
-    const s = dominoes[i].join("")
-    for (let j = i + 1; j < dominoes.length; j++) {
-      if (s === dominoes[j].join("") || s === dominoes[j].reverse().join("")) {
-        res++
-      }
+  let res = 0, map = new Map()
+  for (let i = 0; i < dominoes.length; i++) {
+    const s = dominoes[i][0] < dominoes[i][1] ? `${dominoes[i][0]}${dominoes[i][1]}` : `${dominoes[i][1]}${dominoes[i][0]}`
+    if (!map.has(s)) {
+      map.set(s, 0)
+      continue
     }
+    const c = map.get(s) + 1
+    map.set(s, c)
+    res += c
   }
   return res
 };
