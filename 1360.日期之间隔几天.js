@@ -10,8 +10,6 @@
  * @param {string} date2
  * @return {number}
  */
-var daysBetweenDates = function(date1, date2) {
-
-};
+var daysBetweenDates = (date1, date2) => Math.abs((new Date(date1).getTime() - new Date(date2).getTime()) / 86400000)
 // @lc code=end
 
