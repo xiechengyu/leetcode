@@ -11,15 +11,28 @@
  */
 var sortString = function (s) {
   let res = '', flag = true
-  const map = new Map(), map1 = new Map()
-  s = s.split("").sort((a, b) => a - b)
+  const arr = []
   for (let i = 0; i < s.length; i++) {
-    map.set(s[i], map.has(s[i]) ? map.get(s[i]) + 1 : 0)
-    map1.set(s[s.length - 1 - i], map1.has(s[s.length - 1 - i]) ? map1.get(s[s.length - 1 - i]) + 1 : 0)
+    const j = s[i].charCodeAt() - 97
+    arr[j] = arr[j] ? arr[j] + 1 : 1
   }
   while (res.length < s.length) {
-    for (const [k, y] of map) {
-
+    if (flag) {
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] && arr[i] > 0) {
+          res += String.fromCharCode(i + 97)
+          arr[i] -= 1
+        }
+      }
+      flag = false
+    } else {
+      for (let i = arr.length - 1; i > -1; i--) {
+        if (arr[i] && arr[i] > 0) {
+          res += String.fromCharCode(i + 97)
+          arr[i] -= 1
+        }
+      }
+      flag = true
     }
   }
   return res
