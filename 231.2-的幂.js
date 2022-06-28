@@ -39,13 +39,16 @@
  * @param {number} n
  * @return {boolean}
  */
+// var isPowerOfTwo = function (n) {
+//   if (n === 0) return false
+//   while (n !== 1) {
+//     if (n % 2 !== 0) return false
+//     n /= 2
+//   }
+//   return true
+// };
 var isPowerOfTwo = function (n) {
-  if (n === 0) return false
-  while (n !== 1) {
-    if (n % 2 !== 0) return false
-    n /= 2
-  }
-  return true
+  return (n > 0) && (1 << 30) % n == 0;
 };
 // @lc code=end
 
